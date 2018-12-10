@@ -13,8 +13,14 @@ public class MyContainer1<T> {
 
     final private LinkedList<T> container = new LinkedList<T>();
     final private int MAX_COUNT = 10;
+    private int count = 0;
 
     public synchronized void put(T t) {
+
+        /**
+         * 这里为什么使用while而不是if呢？
+         * 因为wait等待的时候会释放锁。
+         */
         while (MAX_COUNT == container.size()) {
             try {
                 this.wait();
@@ -23,6 +29,7 @@ public class MyContainer1<T> {
             }
         }
         container.add(t);
+        count++;
         this.notifyAll();
     }
 
@@ -36,6 +43,7 @@ public class MyContainer1<T> {
         }
         T t = container.removeFirst();
         this.notifyAll();
+        count--;
         return t;
     }
 
