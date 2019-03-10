@@ -21,6 +21,7 @@ public class MyThread extends Thread {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        System.out.println("执行结束");
     }
 
     /**
@@ -67,12 +68,27 @@ public class MyThread extends Thread {
     public static void main(String[] args) {
         MyThread myThread = new MyThread();
         myThread.start();
-        try {
-            myThread.join();
-            //  myThread.wait(); 同样的效果
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        waitTest(myThread);
         System.out.println("主线程执行");
+    }
+
+    public static void joinTest(Thread thread){
+        synchronized (thread){
+            try {
+                thread.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void waitTest(Thread thread){
+        synchronized (thread){
+            try {
+                thread.wait(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
