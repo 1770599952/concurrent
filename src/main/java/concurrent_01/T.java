@@ -22,7 +22,6 @@ public class T {
     private void m() {
         System.out.println("m start!");
 
-
         while (running) {
 //            try {
 //                TimeUnit.MILLISECONDS.sleep(10);
