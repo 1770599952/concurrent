@@ -53,6 +53,10 @@ public class MyThreadPoolExecutor_1 {
         }
     }
 
+    private ExecutorService getMyThreadPoolExecutor() {
+        return pool;
+    }
+
     public static void main(String[] args) {
         MyThreadPoolExecutor_1 poolExecutor = new MyThreadPoolExecutor_1();
         ExecutorService executorService = poolExecutor.getMyThreadPoolExecutor();
@@ -67,9 +71,4 @@ public class MyThreadPoolExecutor_1 {
             });
         }
     }
-
-    private ExecutorService getMyThreadPoolExecutor() {
-        return pool;
-    }
-
 }
