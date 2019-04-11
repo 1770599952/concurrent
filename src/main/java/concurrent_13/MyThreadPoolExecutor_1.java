@@ -36,6 +36,7 @@ public class MyThreadPoolExecutor_1 {
          * Creates an {@code AbortPolicy}.
          */
         public AbortPolicy() {
+
         }
 
         /**
