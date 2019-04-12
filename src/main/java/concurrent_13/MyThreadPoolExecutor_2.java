@@ -4,14 +4,17 @@ import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * https://www.cnblogs.com/zedosu/p/6665306.html
+ * 无界队列线程池
  */
-public class MyThreadPoolExecutor_1 {
-
+public class MyThreadPoolExecutor_2 {
     private ThreadPoolExecutor pool = null;
 
-    public MyThreadPoolExecutor_1() {
-        pool = new ThreadPoolExecutor(1, 3, 10, TimeUnit.MILLISECONDS, new ArrayBlockingQueue<Runnable>(1), new MyThreadFactory(), new AbortPolicy());
+    public MyThreadPoolExecutor_2() {
+        /**
+         *  1.任务首先首先交给核心线程处理
+         *  2.如果核心线程已满，交给无界队列
+         */
+        pool = new ThreadPoolExecutor(1, 3, 10, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<>(), new MyThreadFactory(), new AbortPolicy());
     }
 
     private class MyThreadFactory implements ThreadFactory {
@@ -58,7 +61,7 @@ public class MyThreadPoolExecutor_1 {
     }
 
     public static void main(String[] args) {
-        MyThreadPoolExecutor_1 poolExecutor = new MyThreadPoolExecutor_1();
+        MyThreadPoolExecutor_2 poolExecutor = new MyThreadPoolExecutor_2();
         ExecutorService executorService = poolExecutor.getMyThreadPoolExecutor();
         for (int i = 0; i < 10; i++) {
             executorService.execute(() -> {
