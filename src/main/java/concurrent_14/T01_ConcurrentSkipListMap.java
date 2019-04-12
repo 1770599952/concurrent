@@ -11,7 +11,7 @@ import java.util.concurrent.CountDownLatch;
  * http://www.educity.cn/java/498061.html
  * 阅读concurrentskiplistmap
  */
-public class T01_ConcurrentHashMap {
+public class T01_ConcurrentSkipListMap {
     public static void main(String[] args) {
         /**
          * 高并发并且排序的容器
