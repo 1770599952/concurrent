@@ -11,7 +11,7 @@ import java.util.List;
  * 分析下面的程序可能会产生哪些问题？
  * 重复销售？超量销售？
  *
- * @author 刘永杰
+ * @author liu
  */
 public class TicketSeller1 {
 
