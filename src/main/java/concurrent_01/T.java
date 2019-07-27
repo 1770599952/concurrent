@@ -17,11 +17,9 @@ import java.util.concurrent.TimeUnit;
  *  volatile并不能保证多个线程共同修改running变量所带来的一致性问题，也就是说volatile不能替代sychronized
  */
 public class T {
-    volatile boolean running = true;
-
+    boolean running = true;
     private void m() {
         System.out.println("m start!");
-
         while (running) {
 //            try {
 //                TimeUnit.MILLISECONDS.sleep(10);
@@ -31,10 +29,8 @@ public class T {
         }
         System.out.println("m end!");
     }
-
     public static void main(String[] args) {
         T t = new T();
-
         new Thread(t::m, "t1").start();
         try {
             TimeUnit.SECONDS.sleep(1);

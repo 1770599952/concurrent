@@ -9,13 +9,10 @@ import java.util.concurrent.TimeUnit;
  *      新的问题：单独使用一个线程死循环监控，太浪费资源，有没有更好的办法？
  */
 public class MyContainer2 {
-
     volatile List<Object> lists = new ArrayList<Object>();
-
     public void add(Object o){
         lists.add(o);
     }
-
     public int size(){
         return lists.size();
     }
